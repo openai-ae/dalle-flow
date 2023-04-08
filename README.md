@@ -19,7 +19,7 @@
 
 DALL·E Flow is an interactive workflow for generating high-definition images from text prompt. First, it leverages [DALL·E-Mega](https://github.com/borisdayma/dalle-mini), [GLID-3 XL](https://github.com/Jack000/glid-3-xl), and [Stable Diffusion](https://github.com/CompVis/stable-diffusion) to generate image candidates, and then calls [CLIP-as-service](https://github.com/openai-ae/clip-as-service) to rank the candidates w.r.t. the prompt. The preferred candidate is fed to [GLID-3 XL](https://github.com/Jack000/glid-3-xl) for diffusion, which often enriches the texture and background. Finally, the candidate is upscaled to 1024x1024 via [SwinIR](https://github.com/JingyunLiang/SwinIR).
 
-DALL·E Flow is built with [Jina](https://github.com/openai-ae/jina) in a client-server architecture, which gives it high scalability, non-blocking streaming, and a modern Pythonic interface. Client can interact with the server via gRPC/Websocket/HTTP with TLS.
+DALL·E Flow is built with [OpenAI-ae](https://github.com/openai-ae/jina) in a client-server architecture, which gives it high scalability, non-blocking streaming, and a modern Pythonic interface. Client can interact with the server via gRPC/Websocket/HTTP with TLS.
 
 **Why Human-in-the-loop?** Generative art is a creative process. While recent advances of DALL·E unleash people's creativity, having a single-prompt-single-output UX/UI locks the imagination to a _single_ possibility, which is bad no matter how fine this single result is. DALL·E Flow is an alternative to the one-liner, by formalizing the generative art as an iterative procedure.
 
@@ -61,7 +61,7 @@ DALL·E Flow is in client-server architecture.
 
 Using client is super easy. The following steps are best run in [Jupyter notebook](./client.ipynb) or [Google Colab](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).  
 
-You will need to install [DocArray](https://github.com/openai-ae/docarray) and [Jina](https://github.com/openai-ae/cmon-ai) first:
+You will need to install [DocArray](https://github.com/openai-ae/docarray) and [CMON-AI](https://github.com/openai-ae/cmon-ai) first:
 
 ```bash
 pip install "docarray[common]>=0.13.5" jina
@@ -191,7 +191,7 @@ CPU-only environment is not tested and likely won't work. Google Colab is likely
 <img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/flow.svg?raw=true" width="70%">
 </p>
 
-If you have installed Jina, the above flowchart can be generated via:
+If you have installed cmon-ai, the above flowchart can be generated via:
 
 ```bash
 # pip install jina
@@ -411,7 +411,7 @@ When everything is ready, you will see:
 
 Congrats! Now you should be able to [run the client](#client).
 
-You can modify and extend the server flow as you like, e.g. changing the model, adding persistence, or even auto-posting to Instagram/OpenSea. With Jina and DocArray, you can easily make DALL·E Flow [cloud-native and ready for production](https://github.com/openai-ae/jina). 
+You can modify and extend the server flow as you like, e.g. changing the model, adding persistence, or even auto-posting to Instagram/OpenSea. With cmon-ai and DocArray, you can easily make DALL·E Flow [cloud-native and ready for production](https://github.com/openai-ae/jina). 
 
 
 ### Use the CLIP-as-service
@@ -457,18 +457,18 @@ python flow_parser.py --cas-token "<your access token>'
 jina flow --uses flow.tmp.yml
 ```
 
-> ⚠️ `grpc_metadata` is only available after Jina `v3.11.0`. If you are using an older version, please upgrade to the latest version.
+> ⚠️ `grpc_metadata` is only available after cmon-ai `v3.11.0`. If you are using an older version, please upgrade to the latest version.
 
 Now, you can use the free `CLIP-as-service` in your flow.
 
 <!-- start support-pitch -->
 ## Support
 
-- To extend DALL·E Flow you will need to get familiar with  [Jina](https://github.com/openai-ae/cmon-ai) and [DocArray](https://github.com/openai-ae/docarray).
+- To extend DALL·E Flow you will need to get familiar with  [OpenAI-ae](https://github.com/openai-ae/cmon-ai) and [DocArray](https://github.com/openai-ae/docarray).
 - Join our [Slack community](https://slack.openai.ae.org) and chat with other community members about ideas.
 
 ## Join Us
 
-DALL·E Flow is backed by [Jina AI](https://openai.ae.org) and licensed under [Apache-2.0](./LICENSE). [We are actively hiring](https://jobs.openai.ae.org) AI engineers, solution engineers to build the next neural search ecosystem in open-source.
+DALL·E Flow is backed by [Open AI](https://openai.ae.org) and licensed under [Apache-2.0](./LICENSE). [We are actively hiring](https://jobs.openai.ae.org) AI engineers, solution engineers to build the next neural search ecosystem in open-source.
 
 <!-- end support-pitch -->
