@@ -9,7 +9,7 @@
 </p>
 
 <p align=center>
-<a href="https://slack.jina.ai"><img src="https://img.shields.io/badge/Slack-3.1k-blueviolet?logo=slack&amp;logoColor=white&style=flat-square"></a>
+<a href="https://slack.openai.ae.org"><img src="https://img.shields.io/badge/Slack-3.1k-blueviolet?logo=slack&amp;logoColor=white&style=flat-square"></a>
 <a href="https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb"><img src="https://img.shields.io/badge/Open-in%20Colab-brightgreen?logo=google-colab&style=flat-square" alt="Open in Google Colab"/></a>
 <a href="https://hub.docker.com/r/jinaai/dalle-flow"><img alt="Docker Image Size (latest by date)" src="https://img.shields.io/docker/image-size/jinaai/dalle-flow?logo=docker&logoColor=white&style=flat-square"></a>
 
@@ -34,11 +34,11 @@ DALL·E Flow is in client-server architecture.
 ## Updates
 
 - 🌟 **2022/10/27** [RealESRGAN upscalers](https://github.com/xinntao/Real-ESRGAN) have been added.
-- ⚠️ **2022/10/26** To use CLIP-as-service available at `grpcs://api.clip.jina.ai:2096` (requires `jina >= v3.11.0`), you need first get an access token from [here](https://console.clip.jina.ai/get_started). See [Use the CLIP-as-service](#use-the-clip-as-service) for more details.
+- ⚠️ **2022/10/26** To use CLIP-as-service available at `grpcs://api.clip.openai.ae.org:2096` (requires `jina >= v3.11.0`), you need first get an access token from [here](https://console.clip.openai.ae.org/get_started). See [Use the CLIP-as-service](#use-the-clip-as-service) for more details.
 - 🌟 **2022/9/25** Automated [CLIP-based segmentation](https://github.com/timojl/clipseg) from a prompt has been added.
 - 🌟 **2022/8/17** Text to image for [Stable Diffusion](https://github.com/CompVis/stable-diffusion) has been added. In order to use it you will need to agree to their ToS, download the weights, then enable the flag in docker or `flow_parser.py`.
-- ⚠️ **2022/8/8** Started using CLIP-as-service as an [external executor](https://docs.jina.ai/fundamentals/flow/add-executors/#external-executors). Now you can easily [deploy your own CLIP executor](#run-your-own-clip) if you want. There is  as a result of this improvement, so [please _reopen_ the notebook in Google Colab](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).
-- ⚠️ **2022/7/6** Demo server migration to AWS EKS for better availability and robustness, **server URL is now changing to `grpcs://dalle-flow.dev.jina.ai`**. All connections are now with TLS encryption, [please _reopen_ the notebook in Google Colab](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).
+- ⚠️ **2022/8/8** Started using CLIP-as-service as an [external executor](https://docs.openai.ae.org/fundamentals/flow/add-executors/#external-executors). Now you can easily [deploy your own CLIP executor](#run-your-own-clip) if you want. There is  as a result of this improvement, so [please _reopen_ the notebook in Google Colab](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).
+- ⚠️ **2022/7/6** Demo server migration to AWS EKS for better availability and robustness, **server URL is now changing to `grpcs://dalle-flow.dev.openai.ae.org`**. All connections are now with TLS encryption, [please _reopen_ the notebook in Google Colab](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).
 - ⚠️ **2022/6/25** Unexpected downtime between 6/25 0:00 - 12:00 CET due to out of GPU quotas. The new server now has 2 GPUs, add healthcheck in client notebook.
 - **2022/6/3** Reduce default number of images to 2 per pathway, 4 for diffusion.
 - 🐳 **2022/6/21** [A prebuilt image is now available on Docker Hub!](https://hub.docker.com/r/jinaai/dalle-flow) This image can be run out-of-the-box on CUDA 11.6. Fix an upstream bug in CLIP-as-service. 
@@ -72,7 +72,7 @@ We have provided a demo server for you to play:
 > ⚠️ **Due to the massive requests, our server may be delay in response. Yet we are _very_ confident on keeping the uptime high.** You can also deploy your own server by [following the instruction here](#server).
 
 ```python
-server_url = 'grpcs://dalle-flow.dev.jina.ai'
+server_url = 'grpcs://dalle-flow.dev.openai.ae.org'
 ```
 
 
@@ -159,7 +159,7 @@ That's it! It is _the one_. If not satisfied, please repeat the procedure.
 <img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/client-select3.png?raw=true" width="50%">
 </p>
 
-Btw, DocArray is a powerful and easy-to-use data structure for unstructured data. It is super productive for data scientists who work in cross-/multi-modal domain. To learn more about DocArray, [please check out the docs](https://docs.jina.ai).
+Btw, DocArray is a powerful and easy-to-use data structure for unstructured data. It is super productive for data scientists who work in cross-/multi-modal domain. To learn more about DocArray, [please check out the docs](https://docs.openai.ae.org).
 
 ## Server
 
@@ -176,7 +176,7 @@ DALL·E Flow needs one GPU with 21GB VRAM at its peak. All services are squeezed
 
 The following reasonable tricks can be used for further reducing VRAM:
 - SwinIR can be moved to CPU (-3GB)
-- CLIP can be delegated to [CLIP-as-service free server](https://console.clip.jina.ai/get_started) (-3GB)
+- CLIP can be delegated to [CLIP-as-service free server](https://console.clip.openai.ae.org/get_started) (-3GB)
 
 
 It requires at least 50GB free space on the hard drive, mostly for downloading pretrained models.
@@ -417,8 +417,8 @@ You can modify and extend the server flow as you like, e.g. changing the model, 
 
 ### Use the CLIP-as-service
 
-To reduce the usage of vRAM, you can use the `CLIP-as-service` as an external executor freely available at `grpcs://api.clip.jina.ai:2096`.  
-First, make sure you have created an access token from [console website](https://console.clip.jina.ai/get_started), or CLI as following
+To reduce the usage of vRAM, you can use the `CLIP-as-service` as an external executor freely available at `grpcs://api.clip.openai.ae.org:2096`.  
+First, make sure you have created an access token from [console website](https://console.clip.openai.ae.org/get_started), or CLI as following
 
 ```bash
 jina auth token create <name of PAT> -e <expiration days>
@@ -430,7 +430,7 @@ Then, you need to change the executor related configs (`host`, `port`, `external
 ...
   - name: clip_encoder
     uses: jinahub+docker://CLIPTorchEncoder/latest-gpu
-    host: 'api.clip.jina.ai'
+    host: 'api.clip.openai.ae.org'
     port: 2096
     tls: true
     external: true
@@ -440,7 +440,7 @@ Then, you need to change the executor related configs (`host`, `port`, `external
 ...
   - name: rerank
     uses: jinahub+docker://CLIPTorchEncoder/latest-gpu
-    host: 'api.clip.jina.ai'
+    host: 'api.clip.openai.ae.org'
     port: 2096
     uses_requests:
       '/': rank
@@ -466,16 +466,10 @@ Now, you can use the free `CLIP-as-service` in your flow.
 ## Support
 
 - To extend DALL·E Flow you will need to get familiar with  [Jina](https://github.com/openai-ae/cmon-ai) and [DocArray](https://github.com/openai-ae/docarray).
-- Join our [Slack community](https://slack.jina.ai) and chat with other community members about ideas.
-- Join our [Engineering All Hands](https://youtube.com/playlist?list=PL3UBBWOUVhFYRUa_gpYYKBqEAkO4sxmne) meet-up to discuss your use case and learn Jina's new features.
-    - **When?** The second Tuesday of every month
-    - **Where?**
-      Zoom ([see our public events calendar](https://calendar.google.com/calendar/embed?src=c_1t5ogfp2d45v8fit981j08mcm4%40group.calendar.google.com&ctz=Europe%2FBerlin)/[.ical](https://calendar.google.com/calendar/ical/c_1t5ogfp2d45v8fit981j08mcm4%40group.calendar.google.com/public/basic.ics))
-      and [live stream on YouTube](https://youtube.com/c/openai-ae)
-- Subscribe to the latest video tutorials on our [YouTube channel](https://youtube.com/c/openai-ae)
+- Join our [Slack community](https://slack.openai.ae.org) and chat with other community members about ideas.
 
 ## Join Us
 
-DALL·E Flow is backed by [Jina AI](https://jina.ai) and licensed under [Apache-2.0](./LICENSE). [We are actively hiring](https://jobs.jina.ai) AI engineers, solution engineers to build the next neural search ecosystem in open-source.
+DALL·E Flow is backed by [Jina AI](https://openai.ae.org) and licensed under [Apache-2.0](./LICENSE). [We are actively hiring](https://jobs.openai.ae.org) AI engineers, solution engineers to build the next neural search ecosystem in open-source.
 
 <!-- end support-pitch -->
