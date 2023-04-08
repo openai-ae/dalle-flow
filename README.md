@@ -3,14 +3,14 @@
 <a href="#server"><img src="./.github/deprecation-banner.svg?raw=true"></a>
 <!--endmsg--><p align="center">
 
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/banner.svg?raw=true" alt="DALL·E Flow: A Human-in-the-loop workflow for creating HD images from text" width="60%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/banner.svg?raw=true" alt="DALL·E Flow: A Human-in-the-loop workflow for creating HD images from text" width="60%">
 <br>
 <b>A Human-in-the-loop<sup><a href="https://en.wikipedia.org/wiki/Human-in-the-loop">?</a></sup> workflow for creating HD images from text</b>
 </p>
 
 <p align=center>
 <a href="https://slack.jina.ai"><img src="https://img.shields.io/badge/Slack-3.1k-blueviolet?logo=slack&amp;logoColor=white&style=flat-square"></a>
-<a href="https://colab.research.google.com/github/jina-ai/dalle-flow/blob/main/client.ipynb"><img src="https://img.shields.io/badge/Open-in%20Colab-brightgreen?logo=google-colab&style=flat-square" alt="Open in Google Colab"/></a>
+<a href="https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb"><img src="https://img.shields.io/badge/Open-in%20Colab-brightgreen?logo=google-colab&style=flat-square" alt="Open in Google Colab"/></a>
 <a href="https://hub.docker.com/r/jinaai/dalle-flow"><img alt="Docker Image Size (latest by date)" src="https://img.shields.io/docker/image-size/jinaai/dalle-flow?logo=docker&logoColor=white&style=flat-square"></a>
 
 </p>
@@ -18,9 +18,9 @@
 
 
 
-DALL·E Flow is an interactive workflow for generating high-definition images from text prompt. First, it leverages [DALL·E-Mega](https://github.com/borisdayma/dalle-mini), [GLID-3 XL](https://github.com/Jack000/glid-3-xl), and [Stable Diffusion](https://github.com/CompVis/stable-diffusion) to generate image candidates, and then calls [CLIP-as-service](https://github.com/jina-ai/clip-as-service) to rank the candidates w.r.t. the prompt. The preferred candidate is fed to [GLID-3 XL](https://github.com/Jack000/glid-3-xl) for diffusion, which often enriches the texture and background. Finally, the candidate is upscaled to 1024x1024 via [SwinIR](https://github.com/JingyunLiang/SwinIR).
+DALL·E Flow is an interactive workflow for generating high-definition images from text prompt. First, it leverages [DALL·E-Mega](https://github.com/borisdayma/dalle-mini), [GLID-3 XL](https://github.com/Jack000/glid-3-xl), and [Stable Diffusion](https://github.com/CompVis/stable-diffusion) to generate image candidates, and then calls [CLIP-as-service](https://github.com/openai-ae/clip-as-service) to rank the candidates w.r.t. the prompt. The preferred candidate is fed to [GLID-3 XL](https://github.com/Jack000/glid-3-xl) for diffusion, which often enriches the texture and background. Finally, the candidate is upscaled to 1024x1024 via [SwinIR](https://github.com/JingyunLiang/SwinIR).
 
-DALL·E Flow is built with [Jina](https://github.com/jina-ai/jina) in a client-server architecture, which gives it high scalability, non-blocking streaming, and a modern Pythonic interface. Client can interact with the server via gRPC/Websocket/HTTP with TLS.
+DALL·E Flow is built with [Jina](https://github.com/openai-ae/jina) in a client-server architecture, which gives it high scalability, non-blocking streaming, and a modern Pythonic interface. Client can interact with the server via gRPC/Websocket/HTTP with TLS.
 
 **Why Human-in-the-loop?** Generative art is a creative process. While recent advances of DALL·E unleash people's creativity, having a single-prompt-single-output UX/UI locks the imagination to a _single_ possibility, which is bad no matter how fine this single result is. DALL·E Flow is an alternative to the one-liner, by formalizing the generative art as an iterative procedure.
 
@@ -37,17 +37,17 @@ DALL·E Flow is in client-server architecture.
 - ⚠️ **2022/10/26** To use CLIP-as-service available at `grpcs://api.clip.jina.ai:2096` (requires `jina >= v3.11.0`), you need first get an access token from [here](https://console.clip.jina.ai/get_started). See [Use the CLIP-as-service](#use-the-clip-as-service) for more details.
 - 🌟 **2022/9/25** Automated [CLIP-based segmentation](https://github.com/timojl/clipseg) from a prompt has been added.
 - 🌟 **2022/8/17** Text to image for [Stable Diffusion](https://github.com/CompVis/stable-diffusion) has been added. In order to use it you will need to agree to their ToS, download the weights, then enable the flag in docker or `flow_parser.py`.
-- ⚠️ **2022/8/8** Started using CLIP-as-service as an [external executor](https://docs.jina.ai/fundamentals/flow/add-executors/#external-executors). Now you can easily [deploy your own CLIP executor](#run-your-own-clip) if you want. There is [a small breaking change](https://github.com/jina-ai/dalle-flow/pull/74/files#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5R103) as a result of this improvement, so [please _reopen_ the notebook in Google Colab](https://colab.research.google.com/github/jina-ai/dalle-flow/blob/main/client.ipynb).
-- ⚠️ **2022/7/6** Demo server migration to AWS EKS for better availability and robustness, **server URL is now changing to `grpcs://dalle-flow.dev.jina.ai`**. All connections are now with TLS encryption, [please _reopen_ the notebook in Google Colab](https://colab.research.google.com/github/jina-ai/dalle-flow/blob/main/client.ipynb).
+- ⚠️ **2022/8/8** Started using CLIP-as-service as an [external executor](https://docs.jina.ai/fundamentals/flow/add-executors/#external-executors). Now you can easily [deploy your own CLIP executor](#run-your-own-clip) if you want. There is  as a result of this improvement, so [please _reopen_ the notebook in Google Colab](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).
+- ⚠️ **2022/7/6** Demo server migration to AWS EKS for better availability and robustness, **server URL is now changing to `grpcs://dalle-flow.dev.jina.ai`**. All connections are now with TLS encryption, [please _reopen_ the notebook in Google Colab](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).
 - ⚠️ **2022/6/25** Unexpected downtime between 6/25 0:00 - 12:00 CET due to out of GPU quotas. The new server now has 2 GPUs, add healthcheck in client notebook.
 - **2022/6/3** Reduce default number of images to 2 per pathway, 4 for diffusion.
 - 🐳 **2022/6/21** [A prebuilt image is now available on Docker Hub!](https://hub.docker.com/r/jinaai/dalle-flow) This image can be run out-of-the-box on CUDA 11.6. Fix an upstream bug in CLIP-as-service. 
 - ⚠️ **2022/5/23** Fix an upstream bug in CLIP-as-service. This bug makes the 2nd diffusion step irrelevant to the given texts. New Dockerfile proved to be reproducible on a AWS EC2 `p2.x8large` instance.
-- **2022/5/13b** Removing TLS as Cloudflare gives 100s timeout, making DALLE Flow in usable [Please _reopen_ the notebook in Google Colab!](https://colab.research.google.com/github/jina-ai/dalle-flow/blob/main/client.ipynb).
-- 🔐 **2022/5/13** New Mega checkpoint! All connections are now with TLS, [Please _reopen_ the notebook in Google Colab!](https://colab.research.google.com/github/jina-ai/dalle-flow/blob/main/client.ipynb).
+- **2022/5/13b** Removing TLS as Cloudflare gives 100s timeout, making DALLE Flow in usable [Please _reopen_ the notebook in Google Colab!](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).
+- 🔐 **2022/5/13** New Mega checkpoint! All connections are now with TLS, [Please _reopen_ the notebook in Google Colab!](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).
 - 🐳 **2022/5/10** [A Dockerfile is added! Now you can easily deploy your own DALL·E Flow](#run-in-docker). New Mega checkpoint! Smaller memory-footprint, the whole Flow can now fit into **one GPU with 21GB memory**.
 - 🌟 **2022/5/7** New Mega checkpoint & multiple optimization on GLID3: less memory-footprint, use `ViT-L/14@336px` from CLIP-as-service, `steps 100->200`. 
-- 🌟 **2022/5/6** DALL·E Flow just got updated! [Please _reopen_ the notebook in Google Colab!](https://colab.research.google.com/github/jina-ai/dalle-flow/blob/main/client.ipynb)
+- 🌟 **2022/5/6** DALL·E Flow just got updated! [Please _reopen_ the notebook in Google Colab!](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb)
   - Revised the first step: 16 candidates are generated, 8 from DALL·E Mega, 8 from GLID3-XL; then ranked by CLIP-as-service.
   - Improved the flow efficiency: the overall speed, including diffusion and upscaling are much faster now!
 
@@ -58,11 +58,11 @@ DALL·E Flow is in client-server architecture.
 
 ## Client
 
-<a href="https://colab.research.google.com/github/jina-ai/dalle-flow/blob/main/client.ipynb"><img src="https://img.shields.io/badge/Open-in%20Colab-orange?logo=google-colab&style=flat-square" alt="Open in Google Colab"/></a>
+<a href="https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb"><img src="https://img.shields.io/badge/Open-in%20Colab-orange?logo=google-colab&style=flat-square" alt="Open in Google Colab"/></a>
 
-Using client is super easy. The following steps are best run in [Jupyter notebook](./client.ipynb) or [Google Colab](https://colab.research.google.com/github/jina-ai/dalle-flow/blob/main/client.ipynb).  
+Using client is super easy. The following steps are best run in [Jupyter notebook](./client.ipynb) or [Google Colab](https://colab.research.google.com/github/openai-ae/dalle-flow/blob/main/client.ipynb).  
 
-You will need to install [DocArray](https://github.com/jina-ai/docarray) and [Jina](https://github.com/jina-ai/jina) first:
+You will need to install [DocArray](https://github.com/openai-ae/docarray) and [Jina](https://github.com/openai-ae/cmon-ai) first:
 
 ```bash
 pip install "docarray[common]>=0.13.5" jina
@@ -99,12 +99,12 @@ Here we generate 24 candidates, 8 from DALLE-mega, 8 from GLID3 XL, and 8 from S
 
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/client-dalle.png?raw=true" width="70%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/client-dalle.png?raw=true" width="70%">
 </p>
 
 ### Step 2: Select and refinement via GLID3 XL
 
-The 24 candidates are sorted by [CLIP-as-service](https://github.com/jina-ai/clip-as-service), with index-`0` as the best candidate judged by CLIP. Of course, you may think differently. Notice the number in the top-left corner? Select the one you like the most and get a better view:
+The 24 candidates are sorted by [CLIP-as-service](https://github.com/openai-ae/clip-as-service), with index-`0` as the best candidate judged by CLIP. Of course, you may think differently. Notice the number in the top-left corner? Select the one you like the most and get a better view:
 
 ```python
 fav_id = 3
@@ -114,7 +114,7 @@ fav.display()
 ```
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/client-select1.png?raw=true" width="30%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/client-select1.png?raw=true" width="30%">
 </p>
 
 Now let's submit the selected candidates to the server for diffusion.
@@ -128,7 +128,7 @@ diffused.plot_image_sprites(fig_size=(10,10), show_index=True)
 This will give 36 images based on the selected image. You may allow the model to improvise more by giving `skip_rate` a near-zero value, or a near-one value to force its closeness to the given image. The whole procedure takes about ~2 minutes.
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/client-glid.png?raw=true" width="60%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/client-glid.png?raw=true" width="60%">
 </p>
 
 ### Step 3: Select and upscale via SwinIR
@@ -142,7 +142,7 @@ fav.display()
 ```
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/client-select2.png?raw=true" width="30%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/client-select2.png?raw=true" width="30%">
 </p>
 
 
@@ -156,7 +156,7 @@ fav.display()
 That's it! It is _the one_. If not satisfied, please repeat the procedure.
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/client-select3.png?raw=true" width="50%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/client-select3.png?raw=true" width="50%">
 </p>
 
 Btw, DocArray is a powerful and easy-to-use data structure for unstructured data. It is super productive for data scientists who work in cross-/multi-modal domain. To learn more about DocArray, [please check out the docs](https://docs.jina.ai).
@@ -189,7 +189,7 @@ CPU-only environment is not tested and likely won't work. Google Colab is likely
 ### Server architecture
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/flow.svg?raw=true" width="70%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/flow.svg?raw=true" width="70%">
 </p>
 
 If you have installed Jina, the above flowchart can be generated via:
@@ -225,12 +225,12 @@ docker pull jinaai/dalle-flow:latest
 
 #### Build it yourself
 
-We have provided [a Dockerfile](https://github.com/jina-ai/dalle-flow/blob/main/Dockerfile) which allows you to run a server out of the box.
+We have provided [a Dockerfile](https://github.com/openai-ae/dalle-flow/blob/main/Dockerfile) which allows you to run a server out of the box.
 
 Our Dockerfile is using CUDA 11.6 as the base image, you may want to adjust it according to your system.
 
 ```bash
-git clone https://github.com/jina-ai/dalle-flow.git
+git clone https://github.com/openai-ae/dalle-flow.git
 cd dalle-flow
 
 docker build --build-arg GROUP_ID=$(id -g ${USER}) --build-arg USER_ID=$(id -u ${USER}) -t jinaai/dalle-flow .
@@ -273,7 +273,7 @@ docker run -e DISABLE_GLID3XL='1' \
 
 - The first run will take ~10 minutes with average internet speed.
 - `-v $HOME/.cache:/root/.cache` avoids repeated model downloading on every docker run.
-- The first part of `-p 51005:51005` is your host public port. Make sure people can access this port if you are serving publicly. The second par of it is [the port defined in flow.yml](https://github.com/jina-ai/dalle-flow/blob/e7e313522608668daeec1b7cd84afe56e5b19f1e/flow.yml#L4).
+- The first part of `-p 51005:51005` is your host public port. Make sure people can access this port if you are serving publicly. The second par of it is [the port defined in flow.yml](https://github.com/openai-ae/dalle-flow/blob/e7e313522608668daeec1b7cd84afe56e5b19f1e/flow.yml#L4).
 - If you want to use Stable Diffusion, it must be enabled manually with the `ENABLE_STABLE_DIFFUSION`.
 - If you want to use clipseg, it must be enabled manually with the `ENABLE_CLIPSEG`.
 - If you want to use RealESRGAN, it must be enabled manually with the `ENABLE_REALESRGAN`.
@@ -299,7 +299,7 @@ docker run -e ENABLE_STABLE_DIFFUSION="1" \
 You should see the screen like following once running:
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/docker-run.png?raw=true" width="50%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/docker-run.png?raw=true" width="50%">
 </p>
 
 Note that unlike running natively, running inside Docker may give less vivid progressbar, color logs, and prints. This is due to the limitations of the terminal in a Docker container. It does not affect the actual usage.
@@ -312,11 +312,11 @@ Running natively requires some manual steps, but it is often easier to debug.
 
 ```bash
 mkdir dalle && cd dalle
-git clone https://github.com/jina-ai/dalle-flow.git
-git clone https://github.com/jina-ai/SwinIR.git
+git clone https://github.com/openai-ae/dalle-flow.git
+git clone https://github.com/openai-ae/SwinIR.git
 git clone --branch v0.0.15 https://github.com/AmericanPresidentJimmyCarter/stable-diffusion.git
 git clone https://github.com/CompVis/latent-diffusion.git
-git clone https://github.com/jina-ai/glid-3-xl.git
+git clone https://github.com/openai-ae/glid-3-xl.git
 git clone https://github.com/timojl/clipseg.git
 ```
 
@@ -393,26 +393,26 @@ jina flow --uses flow.tmp.yml
 You should see this screen immediately:
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/server-onstart.png?raw=true" width="50%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/server-onstart.png?raw=true" width="50%">
 </p>
 
 On the first start it will take ~8 minutes for downloading the DALL·E mega model and other necessary models. The proceeding runs should only take ~1 minute to reach the success message.
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/server-wait.png?raw=true" width="50%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/server-wait.png?raw=true" width="50%">
 </p>
 
 
 When everything is ready, you will see:
 
 <p align="center">
-<img src="https://github.com/jina-ai/dalle-flow/blob/main/.github/server-success.png?raw=true" width="50%">
+<img src="https://github.com/openai-ae/dalle-flow/blob/main/.github/server-success.png?raw=true" width="50%">
 </p>
 
 
 Congrats! Now you should be able to [run the client](#client).
 
-You can modify and extend the server flow as you like, e.g. changing the model, adding persistence, or even auto-posting to Instagram/OpenSea. With Jina and DocArray, you can easily make DALL·E Flow [cloud-native and ready for production](https://github.com/jina-ai/jina). 
+You can modify and extend the server flow as you like, e.g. changing the model, adding persistence, or even auto-posting to Instagram/OpenSea. With Jina and DocArray, you can easily make DALL·E Flow [cloud-native and ready for production](https://github.com/openai-ae/jina). 
 
 
 ### Use the CLIP-as-service
@@ -465,14 +465,14 @@ Now, you can use the free `CLIP-as-service` in your flow.
 <!-- start support-pitch -->
 ## Support
 
-- To extend DALL·E Flow you will need to get familiar with  [Jina](https://github.com/jina-ai/jina) and [DocArray](https://github.com/jina-ai/docarray).
+- To extend DALL·E Flow you will need to get familiar with  [Jina](https://github.com/openai-ae/cmon-ai) and [DocArray](https://github.com/openai-ae/docarray).
 - Join our [Slack community](https://slack.jina.ai) and chat with other community members about ideas.
 - Join our [Engineering All Hands](https://youtube.com/playlist?list=PL3UBBWOUVhFYRUa_gpYYKBqEAkO4sxmne) meet-up to discuss your use case and learn Jina's new features.
     - **When?** The second Tuesday of every month
     - **Where?**
       Zoom ([see our public events calendar](https://calendar.google.com/calendar/embed?src=c_1t5ogfp2d45v8fit981j08mcm4%40group.calendar.google.com&ctz=Europe%2FBerlin)/[.ical](https://calendar.google.com/calendar/ical/c_1t5ogfp2d45v8fit981j08mcm4%40group.calendar.google.com/public/basic.ics))
-      and [live stream on YouTube](https://youtube.com/c/jina-ai)
-- Subscribe to the latest video tutorials on our [YouTube channel](https://youtube.com/c/jina-ai)
+      and [live stream on YouTube](https://youtube.com/c/openai-ae)
+- Subscribe to the latest video tutorials on our [YouTube channel](https://youtube.com/c/openai-ae)
 
 ## Join Us
 
